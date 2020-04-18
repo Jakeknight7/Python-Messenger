@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import messenger_ui
-import winsound
+from playsound import playsound
 import socket_connection
 
 
@@ -16,7 +16,7 @@ class Messenger(QtWidgets.QWidget):
         self.socket = socket
         self.input_thread = InputQueue(self.socket)
         self.input_thread.signal.connect(self.message_received)
-        self.incomming_message_sound = 'Sound_clips/incoming_message.wav'
+        self.incomming_message_sound = 'Sound_clips/incoming_message.mp3'
         # self.input_thread.start()
 
         self.message_prefix = "message:"
@@ -39,7 +39,7 @@ class Messenger(QtWidgets.QWidget):
     def message_received(self, message):
         self.ui.display_messages_text.appendPlainText(message)
         if message.split(':')[0] != self.username:
-            winsound.PlaySound(self.incomming_message_sound, winsound.SND_ASYNC)
+            playsound(self.incomming_message_sound)
         #if message[:len(self.username)] == self.username:
             #self.ui.messenger_input_text.clear()
 
