@@ -13,6 +13,11 @@ class LoginPage(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.ui.login_button.clicked.connect(self.login)
         self.ui.create_account_button.clicked.connect(self.new_user)
+        self.ui.username_input.returnPressed.connect(self.login)
+        self.ui.password_input.returnPressed.connect(self.login)
+        self.ui.new_username_input.returnPressed.connect(self.new_user)
+        self.ui.new_password_input.returnPressed.connect(self.new_user)
+        self.ui.confirm_password_input.returnPressed.connect(self.new_user)
         self.socket = socket
 
         self.new_user_prefix = "new_user:"

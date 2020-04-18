@@ -11,6 +11,7 @@ class Messenger(QtWidgets.QWidget):
         self.ui = messenger_ui.Ui_messenger_main_window()
         self.ui.setupUi(self)
         self.ui.send_button.clicked.connect(self.send)
+        self.ui.messenger_input_text.returnPressed.connect(self.send)
         self.socket = socket
         self.input_thread = InputQueue(self.socket)
         self.input_thread.signal.connect(self.message_received)

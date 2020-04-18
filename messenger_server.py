@@ -1,6 +1,7 @@
 import socket
 import threading
 import time
+import json
 
 class SERVER:
 
@@ -27,8 +28,6 @@ class SERVER:
         self.USERNAMES[new_user.USERNAME] = socket
         success = 'Success'.encode('ascii')
         socket.send(success)
-        time.sleep(2)
-        socket.send("hello".encode('ascii'))
         return
 
     def EXISTING_USER(self, user_information, socket, ip):
@@ -110,6 +109,7 @@ class SERVER:
 
 
     def RUN_SERVER(self):
+
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.bind((self.HOST, self.PORT))
         s.listen(5)
