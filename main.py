@@ -2,6 +2,7 @@ import LoginGui
 import messengerGui
 #import client
 from PyQt5 import QtCore, QtGui, QtWidgets
+import socket_connection
 
 
 def main():
@@ -9,7 +10,8 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     #messenger = messengerGui.Messenger()
     #messenger.show()
-    login_form = LoginGui.LoginPage()
+    socket = socket_connection.Connection().socket_connection
+    login_form = LoginGui.LoginPage(socket)
     login_form.show()
     sys.exit(app.exec_())
 

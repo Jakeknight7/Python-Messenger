@@ -5,13 +5,13 @@ import socket_connection
 
 class Messenger(QtWidgets.QWidget):
 
-    def __init__(self, username):
+    def __init__(self, username, socket):
         super().__init__()
         self.username = username
         self.ui = messenger_ui.Ui_messenger_main_window()
         self.ui.setupUi(self)
         self.ui.send_button.clicked.connect(self.send)
-        self.socket = socket_connection.Connection().socket_connection
+        self.socket = socket
         self.input_thread = InputQueue(self.socket)
         self.input_thread.signal.connect(self.message_received)
         # self.input_thread.start()
@@ -48,7 +48,12 @@ class InputQueue(QtCore.QThread):
 
     def run(self):
         while True:
-            data = self.socket.recv(1024)
-            message = data.decode('ascii')
-            self.signal.emit(message)
+            try:
+                data = self.socket.recv(1024)
+                if data:
+                    message = data.decode('ascii')
+                    self.signal.emit(message)
+            except ConnectionAbortedError:
+                print("Connection aborted")
+
 
