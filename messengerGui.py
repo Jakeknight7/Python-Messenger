@@ -24,6 +24,20 @@ class Messenger(QtWidgets.QWidget):
         self.incomming_message_sound = 'Sound_clips/incoming_message.wav'
         # self.input_thread.start()
         self.message_prefix = "message:"
+        chat_path = os.path.dirname(__file__) + "\\chats"
+        existing_chats = os.listdir(chat_path)
+        # populate chat table
+        for chat_file in existing_chats:
+            item = QtWidgets.QTableWidgetItem()
+            item.setText(os.path.splitext(chat_file)[0])
+            self.ui.chats_tableWidget.setRowCount(self.ui.chats_tableWidget.rowCount() + 1)
+            self.ui.chats_tableWidget.setItem(self.ui.chats_tableWidget.rowCount() - 1, 0, item)
+        # populate display text
+        if self.ui.chats_tableWidget.rowCount() > 0:
+            chat_file = open("chats/" + existing_chats[0])
+            self.ui.display_messages_text.setPlainText(chat_file.read())
+            chat_file.close()
+            self.ui.recipients_input.setText(os.path.splitext(existing_chats[0])[0])
 
 
     def send(self):
