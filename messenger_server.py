@@ -78,7 +78,7 @@ class SERVER:
             self.USER_INFO[socket].CHATS.append(target_users.sort())
 
         message = user_information[len(information_array[0]) + len(self.message_prefix) + 1:]
-        message = self.USER_INFO[socket].USERNAME + ': ' + message
+        message = information_array[0] + ":" + self.USER_INFO[socket].USERNAME + ': ' + message
         encoded_message = message.encode('ascii')
 
         for recipient in target_users:
