@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Login.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.14.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -39,6 +39,11 @@ class Ui_login_form(object):
         self.login_button = QtWidgets.QPushButton(self.groupBox)
         self.login_button.setGeometry(QtCore.QRect(60, 230, 75, 23))
         self.login_button.setObjectName("login_button")
+        self.existing_user_error_label = QtWidgets.QLabel(self.groupBox)
+        self.existing_user_error_label.setGeometry(QtCore.QRect(6, 40, 191, 20))
+        self.existing_user_error_label.setText("")
+        self.existing_user_error_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.existing_user_error_label.setObjectName("existing_user_error_label")
         self.groupBox_2 = QtWidgets.QGroupBox(login_form)
         self.groupBox_2.setGeometry(QtCore.QRect(220, 10, 211, 281))
         self.groupBox_2.setObjectName("groupBox_2")
@@ -64,6 +69,11 @@ class Ui_login_form(object):
         self.create_account_button = QtWidgets.QPushButton(self.groupBox_2)
         self.create_account_button.setGeometry(QtCore.QRect(60, 230, 91, 23))
         self.create_account_button.setObjectName("create_account_button")
+        self.new_user_error_label = QtWidgets.QLabel(self.groupBox_2)
+        self.new_user_error_label.setGeometry(QtCore.QRect(0, 40, 211, 21))
+        self.new_user_error_label.setText("")
+        self.new_user_error_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.new_user_error_label.setObjectName("new_user_error_label")
 
         self.retranslateUi(login_form)
         QtCore.QMetaObject.connectSlotsByName(login_form)

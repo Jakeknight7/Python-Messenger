@@ -29,10 +29,13 @@ class LoginPage(QtWidgets.QWidget):
         confirm_password = self.ui.confirm_password_input.text()
 
         if ' ' in username:
+            self.ui.new_user_error_label.setText("Choose username without spaces")
             return
 
         if len(password) > 5 and password == confirm_password:
             self.send_account_info(username, password, self.new_user_prefix)
+        else:
+            self.ui.new_user_error_label.setText("Password must have at least 8 characters")
 
     def login(self):
         username = self.ui.username_input.text()
@@ -47,6 +50,7 @@ class LoginPage(QtWidgets.QWidget):
         data = self.socket.recv(32)
         return_message = data.decode('ascii')
         if return_message != 'Success':
+            self.ui.existing_user_error_label.setText("Invalid username/password combination")
             return
 
         self.messenger = messengerGui.Messenger(username, self.socket)
