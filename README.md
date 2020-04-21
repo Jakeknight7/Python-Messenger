@@ -6,4 +6,4 @@ Then run main.py and message your friends!
 
 To install:
 1. Must have python installed
-2. Install PyQt5 (pip install PyQt5)
+2. Install PyQt5 (pip install -r requirements.txt)
