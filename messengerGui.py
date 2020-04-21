@@ -77,7 +77,7 @@ class Messenger(QtWidgets.QWidget):
         if recipients == self.ui.recipients_input.text():
             self.ui.display_messages_text.appendPlainText(message_text)
         self.add_row(recipients)
-        if message_text.split(':')[1] != self.username:
+        if message_text.split(':')[0] != self.username:
             try:
                 winsound.PlaySound(self.incomming_message_sound, winsound.SND_ASYNC)
             except:
